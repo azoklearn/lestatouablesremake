@@ -424,6 +424,77 @@
     // Les sous-menus restent visibles dans le menu fullscreen — aucune logique à appliquer.
     </script>
     
+    <!-- Auto-scroll des avis Google -->
+    <script>
+    (function() {
+        const scroller = document.querySelector('.reviews-scroller');
+        if (!scroller) return;
+
+        const INTERVAL = 4500;   // ms entre chaque avancée
+        const RESUME_DELAY = 2500; // ms avant reprise après interaction
+        let timer = null;
+        let paused = false;
+
+        function getStep() {
+            const card = scroller.querySelector('.review-card');
+            if (!card) return 320;
+            const gap = parseFloat(getComputedStyle(scroller).columnGap || getComputedStyle(scroller).gap || 20);
+            return card.getBoundingClientRect().width + gap;
+        }
+
+        function advance() {
+            if (paused) return;
+            const step = getStep();
+            const max = scroller.scrollWidth - scroller.clientWidth - 4;
+            if (scroller.scrollLeft >= max) {
+                scroller.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                scroller.scrollBy({ left: step, behavior: 'smooth' });
+            }
+        }
+
+        function start() {
+            stop();
+            timer = setInterval(advance, INTERVAL);
+        }
+        function stop() {
+            if (timer) { clearInterval(timer); timer = null; }
+        }
+        function pauseAndResume() {
+            paused = true;
+            stop();
+            clearTimeout(pauseAndResume._t);
+            pauseAndResume._t = setTimeout(() => { paused = false; start(); }, RESUME_DELAY);
+        }
+
+        // Pause au survol (desktop)
+        scroller.addEventListener('mouseenter', () => { paused = true; stop(); });
+        scroller.addEventListener('mouseleave', () => { paused = false; start(); });
+
+        // Pause au scroll / swipe manuel
+        let userInteracting = false;
+        scroller.addEventListener('touchstart', () => { userInteracting = true; paused = true; stop(); }, { passive: true });
+        scroller.addEventListener('touchend', pauseAndResume, { passive: true });
+        scroller.addEventListener('wheel', pauseAndResume, { passive: true });
+
+        // Visibilité de l'onglet — ne pas tourner en arrière-plan
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stop(); else start();
+        });
+
+        // Démarre quand la section devient visible
+        const io = ('IntersectionObserver' in window) ? new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) start();
+                else stop();
+            });
+        }, { threshold: 0.15 }) : null;
+
+        if (io) io.observe(scroller);
+        else start();
+    })();
+    </script>
+
     <!-- Script Firebase pour les flash items -->
     <script type="module" src="script-firebase.js"></script>
 </body>
