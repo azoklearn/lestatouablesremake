@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
     <title>Tarification LDermo - Les Tatouables</title>
     <meta name="description" content="Découvrez les tarifs de LDermo pour la dermopigmentation et le tatouage réparateur - Les Tatouables">
     <link rel="stylesheet" href="styles.css">
@@ -11,97 +12,155 @@
     <style>
         /* Styles spécifiques pour la page tarification */
         .tarifs-page-header {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            background:
+                radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.05), transparent 60%),
+                linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
             padding: 8rem 0 4rem;
             text-align: center;
             color: #ffffff;
         }
-        
         .tarifs-page-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.25rem, 4vw, 3rem);
+            margin-bottom: .75rem;
+            letter-spacing: -0.02em;
         }
-        
         .tarifs-page-header p {
-            font-size: 1.2rem;
-            color: #b8b8b8;
-            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            color: #8a8a8a;
+            margin-bottom: 1rem;
         }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #ffffff;
-            color: #000;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
+
+        /* Note 1ère consultation */
+        .tarifs-note {
+            background: linear-gradient(180deg, #161616, #111);
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            margin: 2rem 0 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            align-items: flex-start;
         }
-        
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
-        }
-        
-        .tarifs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .tarif-item {
-            background: #2d2d2d;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .tarif-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .tarif-item h3 {
+        .tarifs-note h3 {
             color: #ffffff;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
+            font-family: 'Inter', sans-serif;
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-weight: 600;
+            margin: 0;
         }
-        
-        .tarif-item p {
-            color: #b8b8b8;
-            margin-bottom: 1rem;
+        .tarifs-note p {
+            color: #c9c9c9;
+            margin: 0;
             line-height: 1.6;
         }
-        
-        .tarif-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #27ae60;
-            margin-bottom: 1rem;
+        .tarifs-note .tarif-price {
+            color: #ffffff;
+            font-size: 1.6rem;
+            margin: .25rem 0 0;
         }
-        
+        .tarif-price-note {
+            font-size: .9rem;
+            color: #8a8a8a;
+            font-weight: 400;
+            margin-left: .5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Sous-parties */
+        .tarifs-category {
+            margin-top: 3.5rem;
+        }
+        .tarifs-category-title {
+            font-family: 'Playfair Display', serif;
+            color: #ffffff;
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            letter-spacing: -0.02em;
+            margin: 0 0 .25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .tarifs-category-title::before {
+            content: "";
+            width: 36px;
+            height: 1px;
+            background: #ffffff;
+            opacity: .6;
+        }
+        .tarifs-category-subtitle {
+            color: #8a8a8a;
+            margin: 0 0 1.75rem 52px;
+            font-size: .95rem;
+            letter-spacing: .02em;
+        }
+
+        .tarifs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+        .tarif-item {
+            background: #161616;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: transform .3s cubic-bezier(.22,.61,.36,1),
+                        border-color .3s cubic-bezier(.22,.61,.36,1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+        .tarif-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,.18);
+        }
+        .tarif-item h3 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 1.15rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.01em;
+        }
+        .tarif-item p {
+            color: #c9c9c9;
+            margin: 0;
+            line-height: 1.65;
+            font-size: .95rem;
+        }
+        .tarif-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: .25rem 0;
+            font-variant-numeric: tabular-nums;
+        }
         .tarif-cta {
-            display: inline-block;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            align-self: flex-start;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,.35);
+            padding: .65rem 1.25rem;
+            border-radius: 999px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            font-size: .9rem;
+            transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+            margin-top: auto;
         }
-        
         .tarif-cta:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
         }
         
         @media (max-width: 768px) {
@@ -124,7 +183,7 @@
         }
     </style>
 </head>
-<body style="padding-top: 150px !important;">
+<body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container" style="position:relative;">
@@ -163,7 +222,7 @@
     </nav>
 
     <!-- Header -->
-    <section class="tarifs-page-header" style="padding-top: 4rem !important; margin-top: 0 !important;">
+    <section class="tarifs-page-header">
         <div class="container">
             <a href="ldermo.html" class="back-button">
                 <i class="fas fa-arrow-left"></i>
@@ -175,37 +234,68 @@
     </section>
 
     <!-- Tarification Section -->
-    <section class="ldermo" style="padding-top: 2rem !important; margin-top: 0 !important;">
+    <section class="ldermo">
         <div class="container">
-            <div class="tarifs-grid">
-                <div class="tarif-item">
-                    <h3>1ère consultation (obligatoire)</h3>
-                    <p>Première consultation pour évaluer votre projet et définir la méthode adaptée</p>
-                    <div class="tarif-price">50€ (déduit du prix de la prestation)</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
-                </div>
-                
-                <div class="tarif-item">
-                    <h3>Cicatrices, vergetures, peaux brûlées ou greffées</h3>
-                    <p>Travail à l'heure pour le camouflage et l'amélioration de l'apparence. Retouches comprises jusqu'à 2 séances.</p>
-                    <div class="tarif-price">150€/heure</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
-                </div>
-                
-                <div class="tarif-item">
-                    <h3>Aréoles mammaires - 1 aréole</h3>
-                    <p>Reconstruction complète d'une aréole mammaire après chirurgie. 1 retouche comprise.</p>
-                    <div class="tarif-price">300€</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
-                </div>
-                
-                <div class="tarif-item">
-                    <h3>Aréoles mammaires - 2 aréoles</h3>
-                    <p>Reconstruction complète de deux aréoles mammaires après chirurgie. 1 retouche comprise.</p>
-                    <div class="tarif-price">500€</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
+
+            <!-- Note 1ère consultation, commune aux deux prestations -->
+            <div class="tarifs-note">
+                <h3>1ère consultation (obligatoire)</h3>
+                <p>Première consultation pour évaluer votre projet et définir la méthode adaptée.</p>
+                <div class="tarif-price">50€ <span class="tarif-price-note">(déduit du prix de la prestation)</span></div>
+            </div>
+
+            <!-- Sous-partie : Maquillage permanent -->
+            <div class="tarifs-category">
+                <h2 class="tarifs-category-title">Maquillage permanent</h2>
+                <p class="tarifs-category-subtitle">Sourcils, yeux et lèvres</p>
+                <div class="tarifs-grid">
+                    <div class="tarif-item">
+                        <h3>Sourcils</h3>
+                        <p>Maquillage permanent des sourcils pour un rendu naturel et harmonieux. 1 retouche comprise.</p>
+                        <div class="tarif-price">Sur devis</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Yeux</h3>
+                        <p>Maquillage permanent du contour des yeux pour un regard intensifié et durable.</p>
+                        <div class="tarif-price">Sur devis</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Lèvres</h3>
+                        <p>Maquillage permanent des lèvres pour redessiner le contour et raviver la couleur naturelle.</p>
+                        <div class="tarif-price">Sur devis</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Sous-partie : Tatouage réparateur -->
+            <div class="tarifs-category">
+                <h2 class="tarifs-category-title">Tatouage réparateur</h2>
+                <p class="tarifs-category-subtitle">Camouflage, reconstruction et accompagnement</p>
+                <div class="tarifs-grid">
+                    <div class="tarif-item">
+                        <h3>Cicatrices, vergetures, peaux brûlées ou greffées</h3>
+                        <p>Travail à l'heure pour le camouflage et l'amélioration de l'apparence. Retouches comprises jusqu'à 2 séances.</p>
+                        <div class="tarif-price">150€/heure</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Aréoles mammaires — 1 aréole</h3>
+                        <p>Reconstruction complète d'une aréole mammaire après chirurgie. 1 retouche comprise.</p>
+                        <div class="tarif-price">300€</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Aréoles mammaires — 2 aréoles</h3>
+                        <p>Reconstruction complète de deux aréoles mammaires après chirurgie. 1 retouche comprise.</p>
+                        <div class="tarif-price">500€</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -278,18 +368,6 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Les Tatouables . Tous droits réservés.</p>
-            </div>
-            <div class="footer-creator" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                <p style="color: #b8b8b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Site créé par <strong style="color: #ffffff;">NOANWEB</strong></p>
-                <div style="display: flex; justify-content: center; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                    <a href="https://www.instagram.com/noan.web/" target="_blank" style="color: #b8b8b8; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.3rem; transition: color 0.3s ease;">
-                        <i class="fab fa-instagram"></i> @noan.web
-                    </a>
-                    <span style="color: #555;">•</span>
-                    <a href="https://noanwebdesign.netlify.app" target="_blank" style="color: #b8b8b8; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.3rem; transition: color 0.3s ease;">
-                        <i class="fas fa-globe"></i> noanwebdesign.netlify.app
-                    </a>
-                </div>
             </div>
         </div>
     </footer>
