@@ -1223,6 +1223,65 @@
         nodes.forEach(n => io.observe(n));
     })();
     </script>
+    <!-- Enhance le menu hamburger : header (logo) + footer (CTA devis + contact) -->
+    <script>
+    (function() {
+        const navMenu = document.querySelector('.nav-menu');
+        if (!navMenu || navMenu.querySelector('.nav-menu-header')) return;
+
+        // Marquer chaque item de nav existant
+        navMenu.querySelectorAll(':scope > li').forEach(li => li.classList.add('nav-item'));
+
+        // Détecter si on est sur la home (#contact valable) ou sous-page (besoin de index.html#contact)
+        const isHome = /(^|\/)index\.html?$/i.test(location.pathname) || location.pathname.endsWith('/') || location.pathname.endsWith('/lestatouables') || location.pathname.endsWith('/lestatouablesremake');
+        const contactHref = isHome ? '#contact' : 'index.html#contact';
+
+        // Header (logo + tagline)
+        const header = document.createElement('li');
+        header.className = 'nav-menu-header';
+        header.innerHTML = `
+            <img src="images/logo.png" alt="Les Tatouables">
+            <span class="nav-menu-tagline">Salon de tatouage · Toul</span>
+        `;
+        navMenu.insertBefore(header, navMenu.firstChild);
+
+        // Footer (téléphone, adresse, socials, CTA devis)
+        const footer = document.createElement('li');
+        footer.className = 'nav-menu-footer';
+        footer.innerHTML = `
+            <div class="nav-menu-footer-left">
+                <span class="nav-footer-eyebrow">Contact</span>
+                <a class="nav-footer-phone" href="tel:0661154068">06 61 15 40 68</a>
+                <span class="nav-footer-address">9 av. 1ère Armée Françaises 44-45<br>54200 Toul</span>
+            </div>
+            <div class="nav-menu-footer-right">
+                <div class="nav-footer-socials">
+                    <a href="https://www.instagram.com/lestatouables/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61582881365342" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+                <a class="nav-footer-cta" href="${contactHref}">
+                    <i class="fas fa-calendar-check"></i>
+                    Demander un devis
+                </a>
+            </div>
+        `;
+        navMenu.appendChild(footer);
+
+        // Ferme aussi le menu quand on clique sur un lien du footer (CTA, socials, phone)
+        const hamburger = document.querySelector('.hamburger');
+        footer.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                if (hamburger) {
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+                }
+            });
+        });
+    })();
+    </script>
+
 </body>
 </html>
 
