@@ -1223,5 +1223,63 @@
     })();
     </script>
 
+    <!-- FAB Contact rapide -->
+    <div id="fab" class="fab" aria-label="Contact rapide">
+        <div class="fab-actions" role="menu">
+            <a class="fab-action" href="https://www.instagram.com/lestatouables/" target="_blank" rel="noopener" aria-label="Instagram" role="menuitem">
+                <span class="fab-label">Instagram</span>
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="fab-action" href="https://www.facebook.com/profile.php?id=61582881365342" target="_blank" rel="noopener" aria-label="Facebook" role="menuitem">
+                <span class="fab-label">Facebook</span>
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a class="fab-action" href="tel:0661154068" aria-label="Appeler" role="menuitem">
+                <span class="fab-label">Appeler</span>
+                <i class="fas fa-phone"></i>
+            </a>
+            <a class="fab-action" href="#contact" aria-label="Demander un devis" role="menuitem">
+                <span class="fab-label">Devis · RDV</span>
+                <i class="fas fa-calendar-check"></i>
+            </a>
+        </div>
+        <button id="fabToggle" class="fab-toggle" type="button" aria-expanded="false" aria-controls="fab" aria-label="Ouvrir le menu de contact">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <script>
+    (function() {
+        const fab = document.getElementById('fab');
+        const toggle = document.getElementById('fabToggle');
+        if (!fab || !toggle) return;
+
+        function setOpen(open) {
+            fab.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.setAttribute('aria-label', open ? 'Fermer le menu de contact' : 'Ouvrir le menu de contact');
+            toggle.querySelector('i').className = open ? 'fas fa-times' : 'fas fa-comment-dots';
+        }
+
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setOpen(!fab.classList.contains('is-open'));
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!fab.contains(e.target)) setOpen(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setOpen(false);
+        });
+
+        // Ferme le FAB quand on clique sur une action
+        fab.querySelectorAll('.fab-action').forEach(a => {
+            a.addEventListener('click', () => setOpen(false));
+        });
+    })();
+    </script>
+
 </body>
 </html>
