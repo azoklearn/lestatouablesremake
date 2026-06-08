@@ -1216,18 +1216,50 @@ a:link, a:visited { -webkit-tap-highlight-color: rgba(255,255,255,.08); }
     margin-bottom: 3rem;
 }
 
-/* Réalisations Sinkolor/LDermo : 2 colonnes mobile, 3 colonnes desktop */
-#portfolio-sinkolor .portfolio-grid,
-#portfolioGrid.portfolio-grid {
+/* Sinkolor : 2 colonnes mobile, 3 colonnes desktop */
+#portfolio-sinkolor .portfolio-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: .5rem;
 }
 @media (min-width: 768px) {
-    #portfolio-sinkolor .portfolio-grid,
-    #portfolioGrid.portfolio-grid {
+    #portfolio-sinkolor .portfolio-grid {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 1.25rem;
     }
+}
+
+/* LDermo : 1 image par ligne, plein large, sans texte / overlay */
+#portfolio-ldermo .portfolio-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+    max-width: 720px;
+    margin: 0 auto 3rem;
+}
+#portfolio-ldermo .portfolio-item {
+    background: transparent;
+    border: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+#portfolio-ldermo .portfolio-image {
+    height: auto;
+    aspect-ratio: auto;
+    background: transparent;
+}
+#portfolio-ldermo .portfolio-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+    filter: none;
+    transition: transform .5s var(--ease);
+}
+#portfolio-ldermo .portfolio-item:hover .portfolio-image img { transform: scale(1.02); }
+/* Aucun texte / overlay */
+#portfolio-ldermo .portfolio-overlay,
+#portfolio-ldermo .portfolio-overlay * { display: none !important; }
+@media (min-width: 768px) {
+    #portfolio-ldermo .portfolio-grid { gap: 1.5rem; }
 }
 .portfolio-item {
     position: relative;
