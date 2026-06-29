@@ -122,6 +122,55 @@
                 gap: 1rem;
             }
         }
+
+        /* Note 1ère consultation */
+        .tarifs-note {
+            background: #2d2d2d;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0 2.5rem;
+        }
+        .tarifs-note h3 {
+            color: #ffffff;
+            margin-bottom: .5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+        .tarifs-note p {
+            color: #b8b8b8;
+            margin-bottom: .5rem;
+            line-height: 1.6;
+        }
+        .tarifs-note .tarif-price {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+        .tarif-price-note {
+            font-size: .9rem;
+            color: #b8b8b8;
+            font-weight: 400;
+            margin-left: .5rem;
+        }
+
+        /* Sous-parties */
+        .tarifs-category { margin-top: 3rem; }
+        .tarifs-category-title {
+            color: #ffffff;
+            font-size: 2rem;
+            margin: 0 0 .25rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .tarifs-category-subtitle {
+            color: #b8b8b8;
+            margin: 0 0 1.5rem;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            .tarifs-category-title { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body style="padding-top: 150px !important;">
@@ -177,35 +226,66 @@
     <!-- Tarification Section -->
     <section class="ldermo" style="padding-top: 2rem !important; margin-top: 0 !important;">
         <div class="container">
-            <div class="tarifs-grid">
-                <div class="tarif-item">
-                    <h3>1ère consultation (obligatoire)</h3>
-                    <p>Première consultation pour évaluer votre projet et définir la méthode adaptée</p>
-                    <div class="tarif-price">50€ (déduit du prix de la prestation)</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
-                </div>
-                
-                <div class="tarif-item">
-                    <h3>Cicatrices, vergetures, peaux brûlées ou greffées</h3>
-                    <p>Travail à l'heure pour le camouflage et l'amélioration de l'apparence. Retouches comprises jusqu'à 2 séances.</p>
-                    <div class="tarif-price">150€/heure</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
-                </div>
-                
-                <div class="tarif-item">
-                    <h3>Aréoles mammaires - 1 aréole</h3>
-                    <p>Reconstruction complète d'une aréole mammaire après chirurgie. 1 retouche comprise.</p>
-                    <div class="tarif-price">300€</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
-                </div>
-                
-                <div class="tarif-item">
-                    <h3>Aréoles mammaires - 2 aréoles</h3>
-                    <p>Reconstruction complète de deux aréoles mammaires après chirurgie. 1 retouche comprise.</p>
-                    <div class="tarif-price">500€</div>
-                    <a href="#contact" class="tarif-cta">Demander un devis</a>
+
+            <!-- Note 1ère consultation, commune aux deux prestations -->
+            <div class="tarifs-note">
+                <h3>1ère consultation (obligatoire)</h3>
+                <p>Première consultation pour évaluer votre projet et définir la méthode adaptée.</p>
+                <div class="tarif-price">50€ <span class="tarif-price-note">(déduit du prix de la prestation)</span></div>
+            </div>
+
+            <!-- Sous-partie : Maquillage permanent -->
+            <div class="tarifs-category">
+                <h2 class="tarifs-category-title">Maquillage permanent</h2>
+                <p class="tarifs-category-subtitle">Sourcils, yeux et lèvres</p>
+                <div class="tarifs-grid">
+                    <div class="tarif-item">
+                        <h3>Sourcils</h3>
+                        <p>Maquillage permanent des sourcils pour un rendu naturel et harmonieux. 1 retouche comprise.</p>
+                        <div class="tarif-price">Sur devis</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Yeux</h3>
+                        <p>Maquillage permanent du contour des yeux pour un regard intensifié et durable.</p>
+                        <div class="tarif-price">Sur devis</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Lèvres</h3>
+                        <p>Maquillage permanent des lèvres pour redessiner le contour et raviver la couleur naturelle.</p>
+                        <div class="tarif-price">Sur devis</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Sous-partie : Tatouage réparateur -->
+            <div class="tarifs-category">
+                <h2 class="tarifs-category-title">Tatouage réparateur</h2>
+                <p class="tarifs-category-subtitle">Camouflage, reconstruction et accompagnement</p>
+                <div class="tarifs-grid">
+                    <div class="tarif-item">
+                        <h3>Cicatrices, vergetures, peaux brûlées ou greffées</h3>
+                        <p>Travail à l'heure pour le camouflage et l'amélioration de l'apparence. Retouches comprises jusqu'à 2 séances.</p>
+                        <div class="tarif-price">150€/heure</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Aréoles mammaires — 1 aréole</h3>
+                        <p>Reconstruction complète d'une aréole mammaire après chirurgie. 1 retouche comprise.</p>
+                        <div class="tarif-price">300€</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                    <div class="tarif-item">
+                        <h3>Aréoles mammaires — 2 aréoles</h3>
+                        <p>Reconstruction complète de deux aréoles mammaires après chirurgie. 1 retouche comprise.</p>
+                        <div class="tarif-price">500€</div>
+                        <a href="#contact" class="tarif-cta">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
